@@ -1,0 +1,417 @@
+/* ======================================= */
+/* --- 1. BASE & GLOBAL STYLES --- */
+/* ======================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #1a1a3a;
+    color: #ffffff;
+    overflow-x: hidden; 
+}
+
+/* ======================================= */
+/* --- 2. HEADER & NAVIGATION --- */
+/* ======================================= */
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 80px;
+    z-index: 100;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: fadeSlideDown 0.8s ease forwards;
+}
+
+.logo {
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 35px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.1rem;
+}
+
+.nav-links i {
+    font-size: 1.2rem; 
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: #c4c4ff;
+    text-shadow: 0 0 5px #c4c4ff;
+}
+
+/* ======================================= */
+/* --- 3. BUTTONS & UTILITIES --- */
+/* ======================================= */
+.btn {
+    padding: 10px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    border: 2px solid #ffffff;
+    background-color: transparent;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #ffffff;
+    color: #4a69ff;
+}
+
+.btn-secondary {
+    background-color: #4a69ff;
+    color: #ffffff;
+    display: inline-block; 
+    margin-top: 20px;
+    padding: 10px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #3b53cc;
+    transform: translateY(-2px);
+}
+
+.btn-login, .btn-kirim, .btn-simpan-jurnal {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  background-color: #4a69ff;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-login:hover, .btn-kirim:hover, .btn-simpan-jurnal:hover {
+  background-color: #6a89ff;
+  box-shadow: 0 0 15px rgba(74, 105, 255, 0.6);
+}
+
+.toast {
+    position: fixed;
+    bottom: -100px; 
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #2dd4bf;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s, bottom 0.5s, transform 0.5s;
+    z-index: 1001;
+}
+.toast.show {
+    opacity: 1;
+    visibility: visible;
+    bottom: 30px;
+}
+.toast.error {
+    background-color: #ff4d4d;
+}
+
+/* ======================================= */
+/* --- 4. ANIMATIONS & KEYFRAMES --- */
+/* ======================================= */
+@keyframes fadeSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes floatMoon {
+    0% { transform: translate(-50%, 0); }
+    100% { transform: translate(-50%, -10px); }
+}
+
+.animate-fade-up {
+    opacity: 0; 
+    animation: fadeIn 1s ease-out forwards; 
+}
+
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+.delay-3 { animation-delay: 0.6s; }
+.delay-4 { animation-delay: 0.8s; }
+
+
+/* ======================================= */
+/* --- 5. PAGE STYLES (SHARED) --- */
+/* ======================================= */
+.login-page, 
+.journal-page, 
+.dashboard-style, 
+.about-page,
+.contact-page,
+.data-page,
+.public-view-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 120px 20px 40px 20px;
+    background: linear-gradient(to bottom, #1a1a3a, #3c3c8c);
+    color: #ffffff;
+}
+
+.login-page { align-items: center; } /* Override for login to center vertically */
+.public-view-page { align-items: flex-start; } /* Override for public view */
+
+
+.login-container, 
+.journal-form-container, 
+.dashboard-container,
+.about-content,
+.contact-container,
+.data-container {
+    width: 100%;
+    max-width: 800px;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s ease-out;
+}
+
+.login-container { max-width: 420px; }
+.data-container { max-width: 1000px; }
+.about-container { max-width: 1200px; }
+
+
+.form-group { margin-bottom: 20px; }
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  color: #cdd6e0;
+}
+
+.form-group input, 
+.contact-text input,
+textarea#isi-jurnal,
+.filter-container input,
+.contact-text textarea {
+  width: 100%;
+  padding: 12px 15px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  resize: vertical;
+}
+
+.form-group input:focus, 
+.contact-text input:focus, 
+textarea#isi-jurnal:focus,
+.filter-container input:focus,
+.contact-text textarea:focus {
+  outline: none;
+  border-color: #4a69ff;
+  box-shadow: 0 0 10px rgba(74, 105, 255, 0.5);
+}
+
+/* ======================================= */
+/* --- 6. PROJECT SHOWCASE STYLES (NEW) --- */
+/* ======================================= */
+
+.project-summary-card {
+    margin-bottom: 50px;
+    padding: 25px;
+    background: rgba(0, 0, 0, 0.3); 
+    border-radius: 12px;
+    border-left: 5px solid #4a69ff; 
+}
+
+.project-summary-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #fff; 
+}
+
+.project-summary-card p {
+    color: #cdd6e0; 
+    line-height: 1.6;
+}
+
+.module-showcase-section {
+    margin-bottom: 40px; 
+}
+
+.section-title {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #fff;
+    text-align: center;
+    font-weight: 700;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+}
+
+.feature-card {
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    border-left: 3px solid rgba(255, 255, 255, 0.1); 
+    transition: transform 0.3s ease;
+}
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.feature-title {
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+.feature-title i {
+    margin-right: 8px;
+    font-size: 1.2rem;
+}
+
+.feature-description {
+    font-size: 0.9rem;
+    color: #aeb8c4;
+}
+
+/* Warna spesifik per kartu */
+.feature-grid .feature-card:nth-child(1) { border-left-color: #f59e0b; }
+.feature-grid .feature-card:nth-child(1) .feature-title { color: #f59e0b; }
+
+.feature-grid .feature-card:nth-child(2) { border-left-color: #2dd4bf; }
+.feature-grid .feature-card:nth-child(2) .feature-title { color: #2dd4bf; }
+
+.feature-grid .feature-card:nth-child(3) { border-left-color: #bc6bff; }
+.feature-grid .feature-card:nth-child(3) .feature-title { color: #bc6bff; }
+
+.feature-grid .feature-card:nth-child(4) { border-left-color: #4a69ff; }
+.feature-grid .feature-card:nth-child(4) .feature-title { color: #4a69ff; }
+
+
+/* ======================================= */
+/* --- 7. MEDIA QUERIES --- */
+/* ======================================= */
+@media (max-width: 768px) {
+  header {
+    padding: 20px;
+  }
+  nav {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  /* Penyesuaian hero section untuk mobile */
+  .hero-section {
+      height: auto; 
+      padding-top: 100px; 
+      padding-bottom: 50px;
+      flex-direction: column;
+      text-align: center;
+  }
+  .hero-content {
+    width: 90%;
+    margin: 30px auto;
+    padding: 40px;
+    text-align: center;
+    border-radius: 20px;
+    border-bottom-left-radius: 20px; /* Menghilangkan sudut melengkung yang besar */
+  }
+  .hero-content h1 {
+      font-size: 2em;
+  }
+
+  .journal-page, .dashboard-style, .public-view-page {
+    padding: 90px 15px 30px 15px;
+    align-items: flex-start;
+  }
+  
+  .dashboard-container, .login-container, .journal-form-container, .about-content, .contact-container, .data-container {
+    padding: 25px;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-container {
+      flex-direction: column;
+  }
+  .filter-container input {
+      width: 100%;
+  }
+  
+}
